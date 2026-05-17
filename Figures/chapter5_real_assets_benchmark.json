@@ -1,0 +1,403 @@
+{
+  "covers": [
+    "C:\\Users\\pipis\\.cursor\\projects\\c-Users-pipis-OneDrive-Desktop-newgrad\\assets\\c__Users_pipis_AppData_Roaming_Cursor_User_workspaceStorage_73701bacba3b1b782b5361dccfd68ec7_images_Luxury_Watches-43718099-600b-4496-a4af-92bef3fffa64.png",
+    "C:\\Users\\pipis\\.cursor\\projects\\c-Users-pipis-OneDrive-Desktop-newgrad\\assets\\c__Users_pipis_AppData_Roaming_Cursor_User_workspaceStorage_73701bacba3b1b782b5361dccfd68ec7_images_WhatsApp_Image_2025-11-25_at_4.25.30_PM-67ae3b10-27b2-4859-a6d9-e8c490a1d2f2.png"
+  ],
+  "barcode": "C:\\Users\\pipis\\.cursor\\projects\\c-Users-pipis-OneDrive-Desktop-newgrad\\assets\\c__Users_pipis_AppData_Roaming_Cursor_User_workspaceStorage_73701bacba3b1b782b5361dccfd68ec7_images_barcode__21_-73b00ece-8f1f-4419-a3b7-4bf931c73dca.png",
+  "trials_per_cover_per_method": 3,
+  "aggregate": {
+    "LSB": {
+      "PSNR": {
+        "avg": 55.3477,
+        "min": 53.0952,
+        "max": 57.6002
+      },
+      "SSIM": {
+        "avg": 0.9995,
+        "min": 0.9991,
+        "max": 0.9999
+      },
+      "BER": {
+        "avg": 2.6989,
+        "min": 1.4124,
+        "max": 3.9854
+      },
+      "hide_total_s": {
+        "avg": 0.4357,
+        "min": 0.2256,
+        "max": 0.6415
+      },
+      "extract_total_s": {
+        "avg": null,
+        "min": null,
+        "max": null
+      },
+      "chi_square_suspicion": {
+        "avg": 1.0,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "hist_variance_change_pct": {
+        "avg": -22.4772,
+        "min": -28.3141,
+        "max": -16.6402
+      },
+      "entropy_delta": {
+        "avg": 0.2493,
+        "min": 0.0614,
+        "max": 0.4372
+      },
+      "success_rate": "0/6"
+    },
+    "DCT": {
+      "PSNR": {
+        "avg": 45.3257,
+        "min": 44.7245,
+        "max": 45.9268
+      },
+      "SSIM": {
+        "avg": 0.9948,
+        "min": 0.9939,
+        "max": 0.9958
+      },
+      "BER": {
+        "avg": 5.9636,
+        "min": 5.1483,
+        "max": 6.7789
+      },
+      "hide_total_s": {
+        "avg": 0.8099,
+        "min": 0.3136,
+        "max": 1.3192
+      },
+      "extract_total_s": {
+        "avg": null,
+        "min": null,
+        "max": null
+      },
+      "chi_square_suspicion": {
+        "avg": 1.0,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "hist_variance_change_pct": {
+        "avg": -38.4813,
+        "min": -55.0646,
+        "max": -21.8979
+      },
+      "entropy_delta": {
+        "avg": 0.5096,
+        "min": 0.0908,
+        "max": 0.9284
+      },
+      "success_rate": "0/6"
+    },
+    "Hybrid": {
+      "PSNR": {
+        "avg": 52.1788,
+        "min": 51.7456,
+        "max": 52.6119
+      },
+      "SSIM": {
+        "avg": 0.9995,
+        "min": 0.9995,
+        "max": 0.9995
+      },
+      "BER": {
+        "avg": 1.5313,
+        "min": 1.5305,
+        "max": 1.532
+      },
+      "hide_total_s": {
+        "avg": 0.6464,
+        "min": 0.2821,
+        "max": 1.0353
+      },
+      "extract_total_s": {
+        "avg": null,
+        "min": null,
+        "max": null
+      },
+      "chi_square_suspicion": {
+        "avg": 1.0,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "hist_variance_change_pct": {
+        "avg": -10.6712,
+        "min": -15.1054,
+        "max": -6.2371
+      },
+      "entropy_delta": {
+        "avg": 0.1532,
+        "min": 0.0243,
+        "max": 0.2821
+      },
+      "success_rate": "0/6"
+    }
+  },
+  "by_cover": {
+    "c__Users_pipis_AppData_Roaming_Cursor_User_workspaceStorage_73701bacba3b1b782b5361dccfd68ec7_images_Luxury_Watches-43718099-600b-4496-a4af-92bef3fffa64.png": {
+      "LSB": {
+        "PSNR": {
+          "avg": 53.0952,
+          "min": 53.0952,
+          "max": 53.0952
+        },
+        "SSIM": {
+          "avg": 0.9991,
+          "min": 0.9991,
+          "max": 0.9991
+        },
+        "BER": {
+          "avg": 3.9854,
+          "min": 3.9854,
+          "max": 3.9854
+        },
+        "hide_total_s": {
+          "avg": 0.2605,
+          "min": 0.2256,
+          "max": 0.3237
+        },
+        "extract_total_s": {
+          "avg": null,
+          "min": null,
+          "max": null
+        },
+        "chi_square_suspicion": {
+          "avg": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "hist_variance_change_pct": {
+          "avg": -16.6402,
+          "min": -16.6402,
+          "max": -16.6402
+        },
+        "entropy_delta": {
+          "avg": 0.0614,
+          "min": 0.0614,
+          "max": 0.0614
+        },
+        "success_rate": "0/3"
+      },
+      "DCT": {
+        "PSNR": {
+          "avg": 44.7245,
+          "min": 44.7245,
+          "max": 44.7245
+        },
+        "SSIM": {
+          "avg": 0.9939,
+          "min": 0.9939,
+          "max": 0.9939
+        },
+        "BER": {
+          "avg": 6.7789,
+          "min": 6.7789,
+          "max": 6.7789
+        },
+        "hide_total_s": {
+          "avg": 0.3235,
+          "min": 0.3136,
+          "max": 0.3338
+        },
+        "extract_total_s": {
+          "avg": null,
+          "min": null,
+          "max": null
+        },
+        "chi_square_suspicion": {
+          "avg": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "hist_variance_change_pct": {
+          "avg": -21.8979,
+          "min": -21.8979,
+          "max": -21.8979
+        },
+        "entropy_delta": {
+          "avg": 0.0908,
+          "min": 0.0908,
+          "max": 0.0908
+        },
+        "success_rate": "0/3"
+      },
+      "Hybrid": {
+        "PSNR": {
+          "avg": 52.6119,
+          "min": 52.6119,
+          "max": 52.6119
+        },
+        "SSIM": {
+          "avg": 0.9995,
+          "min": 0.9995,
+          "max": 0.9995
+        },
+        "BER": {
+          "avg": 1.5305,
+          "min": 1.5305,
+          "max": 1.5305
+        },
+        "hide_total_s": {
+          "avg": 0.2921,
+          "min": 0.2821,
+          "max": 0.3058
+        },
+        "extract_total_s": {
+          "avg": null,
+          "min": null,
+          "max": null
+        },
+        "chi_square_suspicion": {
+          "avg": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "hist_variance_change_pct": {
+          "avg": -6.2371,
+          "min": -6.2371,
+          "max": -6.2371
+        },
+        "entropy_delta": {
+          "avg": 0.0243,
+          "min": 0.0243,
+          "max": 0.0243
+        },
+        "success_rate": "0/3"
+      }
+    },
+    "c__Users_pipis_AppData_Roaming_Cursor_User_workspaceStorage_73701bacba3b1b782b5361dccfd68ec7_images_WhatsApp_Image_2025-11-25_at_4.25.30_PM-67ae3b10-27b2-4859-a6d9-e8c490a1d2f2.png": {
+      "LSB": {
+        "PSNR": {
+          "avg": 57.6002,
+          "min": 57.6002,
+          "max": 57.6002
+        },
+        "SSIM": {
+          "avg": 0.9999,
+          "min": 0.9999,
+          "max": 0.9999
+        },
+        "BER": {
+          "avg": 1.4124,
+          "min": 1.4124,
+          "max": 1.4124
+        },
+        "hide_total_s": {
+          "avg": 0.6108,
+          "min": 0.5937,
+          "max": 0.6415
+        },
+        "extract_total_s": {
+          "avg": null,
+          "min": null,
+          "max": null
+        },
+        "chi_square_suspicion": {
+          "avg": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "hist_variance_change_pct": {
+          "avg": -28.3141,
+          "min": -28.3141,
+          "max": -28.3141
+        },
+        "entropy_delta": {
+          "avg": 0.4372,
+          "min": 0.4372,
+          "max": 0.4372
+        },
+        "success_rate": "0/3"
+      },
+      "DCT": {
+        "PSNR": {
+          "avg": 45.9268,
+          "min": 45.9268,
+          "max": 45.9268
+        },
+        "SSIM": {
+          "avg": 0.9958,
+          "min": 0.9958,
+          "max": 0.9958
+        },
+        "BER": {
+          "avg": 5.1483,
+          "min": 5.1483,
+          "max": 5.1483
+        },
+        "hide_total_s": {
+          "avg": 1.2963,
+          "min": 1.2812,
+          "max": 1.3192
+        },
+        "extract_total_s": {
+          "avg": null,
+          "min": null,
+          "max": null
+        },
+        "chi_square_suspicion": {
+          "avg": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "hist_variance_change_pct": {
+          "avg": -55.0646,
+          "min": -55.0646,
+          "max": -55.0646
+        },
+        "entropy_delta": {
+          "avg": 0.9284,
+          "min": 0.9284,
+          "max": 0.9284
+        },
+        "success_rate": "0/3"
+      },
+      "Hybrid": {
+        "PSNR": {
+          "avg": 51.7456,
+          "min": 51.7456,
+          "max": 51.7456
+        },
+        "SSIM": {
+          "avg": 0.9995,
+          "min": 0.9995,
+          "max": 0.9995
+        },
+        "BER": {
+          "avg": 1.532,
+          "min": 1.532,
+          "max": 1.532
+        },
+        "hide_total_s": {
+          "avg": 1.0008,
+          "min": 0.9733,
+          "max": 1.0353
+        },
+        "extract_total_s": {
+          "avg": null,
+          "min": null,
+          "max": null
+        },
+        "chi_square_suspicion": {
+          "avg": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "hist_variance_change_pct": {
+          "avg": -15.1054,
+          "min": -15.1054,
+          "max": -15.1054
+        },
+        "entropy_delta": {
+          "avg": 0.2821,
+          "min": 0.2821,
+          "max": 0.2821
+        },
+        "success_rate": "0/3"
+      }
+    }
+  }
+}

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Steganography System{% endblock %}</title>
+  <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <header class="header">
+    <div class="header-left">
+      <img class="header-icon" src="{{ url_for('static', filename='favicon.ico') }}" alt="" width="28" height="28">
+      <h1>Steganography System</h1>
+    </div>
+    <button type="button" id="theme-toggle" class="theme-toggle" aria-label="Toggle light or dark mode">Light mode</button>
+  </header>
+  <main class="main">
+    {% block content %}{% endblock %}
+  </main>
+  <script src="{{ url_for('static', filename='js/app.js') }}?v=9"></script>
+  {% block scripts %}{% endblock %}
+</body>
+</html>

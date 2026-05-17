@@ -1,0 +1,35 @@
+{
+  "trials": 3,
+  "summary": {
+    "LSB": {
+      "PSNR": 55.3477,
+      "SSIM": 0.9995,
+      "BER": 2.6989,
+      "hide_avg_s": 0.442,
+      "extract_request_avg_s": 0.2109,
+      "chi_avg": 1.0,
+      "hist_var_change_pct_avg": -22.4772,
+      "success_rate": "0/6"
+    },
+    "DCT": {
+      "PSNR": 45.3257,
+      "SSIM": 0.9948,
+      "BER": 5.9636,
+      "hide_avg_s": 0.8134,
+      "extract_request_avg_s": 1.4517,
+      "chi_avg": 1.0,
+      "hist_var_change_pct_avg": -38.4813,
+      "success_rate": "0/6"
+    },
+    "Hybrid": {
+      "PSNR": 52.1788,
+      "SSIM": 0.9995,
+      "BER": 1.5313,
+      "hide_avg_s": 0.6529,
+      "extract_request_avg_s": 0.3683,
+      "chi_avg": 1.0,
+      "hist_var_change_pct_avg": -10.6712,
+      "success_rate": "0/6"
+    }
+  }
+}

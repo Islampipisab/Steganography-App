@@ -1,0 +1,42 @@
+{
+  "trials": 5,
+  "cover": "c:\\Users\\pipis\\OneDrive\\Desktop\\newgrad\\stego_project\\Figures\\_bench_cover.png",
+  "results": {
+    "LSB": {
+      "PSNR": 64.01,
+      "SSIM": 0.9999,
+      "BER": 0.323,
+      "hide_total_avg_s": 0.1977,
+      "hide_total_min_s": 0.1922,
+      "hide_total_max_s": 0.2144,
+      "extract_total_avg_s": 0.0502,
+      "extract_total_min_s": 0.0471,
+      "extract_total_max_s": 0.0549,
+      "extraction_success_rate": "5/5"
+    },
+    "DCT": {
+      "PSNR": 44.03,
+      "SSIM": 0.985,
+      "BER": 9.0345,
+      "hide_total_avg_s": 0.4241,
+      "hide_total_min_s": 0.408,
+      "hide_total_max_s": 0.4558,
+      "extract_total_avg_s": 0.2856,
+      "extract_total_min_s": 0.277,
+      "extract_total_max_s": 0.3037,
+      "extraction_success_rate": "5/5"
+    },
+    "Hybrid": {
+      "PSNR": 52.14,
+      "SSIM": 0.998,
+      "BER": 1.3273,
+      "hide_total_avg_s": 0.3123,
+      "hide_total_min_s": 0.3068,
+      "hide_total_max_s": 0.3182,
+      "extract_total_avg_s": 0.2356,
+      "extract_total_min_s": 0.2317,
+      "extract_total_max_s": 0.2398,
+      "extraction_success_rate": "5/5"
+    }
+  }
+}

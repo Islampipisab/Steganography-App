@@ -1,0 +1,29 @@
+{
+  "trials": 5,
+  "results": {
+    "LSB": {
+      "chi_avg": 1.0,
+      "chi_min": 1.0,
+      "chi_max": 1.0,
+      "hist_var_change_pct_avg": -2.1794,
+      "hist_var_change_pct_min": -2.1794,
+      "hist_var_change_pct_max": -2.1794
+    },
+    "DCT": {
+      "chi_avg": 1.0,
+      "chi_min": 1.0,
+      "chi_max": 1.0,
+      "hist_var_change_pct_avg": -64.3533,
+      "hist_var_change_pct_min": -64.3533,
+      "hist_var_change_pct_max": -64.3533
+    },
+    "Hybrid": {
+      "chi_avg": 1.0,
+      "chi_min": 1.0,
+      "chi_max": 1.0,
+      "hist_var_change_pct_avg": -15.3803,
+      "hist_var_change_pct_min": -15.3803,
+      "hist_var_change_pct_max": -15.3803
+    }
+  }
+}

@@ -1,0 +1,124 @@
+{
+  "trials_per_cover_per_method": 3,
+  "covers": [
+    "C:\\Users\\pipis\\.cursor\\projects\\c-Users-pipis-OneDrive-Desktop-newgrad\\assets\\c__Users_pipis_AppData_Roaming_Cursor_User_workspaceStorage_73701bacba3b1b782b5361dccfd68ec7_images_Luxury_Watches-43718099-600b-4496-a4af-92bef3fffa64.png",
+    "C:\\Users\\pipis\\.cursor\\projects\\c-Users-pipis-OneDrive-Desktop-newgrad\\assets\\c__Users_pipis_AppData_Roaming_Cursor_User_workspaceStorage_73701bacba3b1b782b5361dccfd68ec7_images_WhatsApp_Image_2025-11-25_at_4.25.30_PM-67ae3b10-27b2-4859-a6d9-e8c490a1d2f2.png"
+  ],
+  "payload_photo": "C:\\Users\\pipis\\.cursor\\projects\\c-Users-pipis-OneDrive-Desktop-newgrad\\assets\\c__Users_pipis_AppData_Roaming_Cursor_User_workspaceStorage_73701bacba3b1b782b5361dccfd68ec7_images_WhatsApp_Image_2025-11-25_at_4.25.30_PM-67ae3b10-27b2-4859-a6d9-e8c490a1d2f2.png",
+  "summary": {
+    "LSB": {
+      "PSNR": {
+        "avg": 42.3063,
+        "min": 38.5407,
+        "max": 46.0719
+      },
+      "SSIM": {
+        "avg": 0.9969,
+        "min": 0.9952,
+        "max": 0.9986
+      },
+      "BER": {
+        "avg": 12.0751,
+        "min": 9.6103,
+        "max": 14.54
+      },
+      "hide_total_s": {
+        "avg": 10.287,
+        "min": 9.9633,
+        "max": 10.6697
+      },
+      "extract_total_s": {
+        "avg": 0.5561,
+        "min": 0.5394,
+        "max": 0.5951
+      },
+      "chi_square_suspicion": {
+        "avg": 1.0,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "hist_variance_change_pct": {
+        "avg": -23.7082,
+        "min": -32.2183,
+        "max": -15.198
+      },
+      "success_rate": "6/6"
+    },
+    "DCT": {
+      "PSNR": {
+        "avg": 42.4036,
+        "min": 38.6127,
+        "max": 46.1944
+      },
+      "SSIM": {
+        "avg": 0.9972,
+        "min": 0.9959,
+        "max": 0.9986
+      },
+      "BER": {
+        "avg": 9.5027,
+        "min": 6.9091,
+        "max": 12.0962
+      },
+      "hide_total_s": {
+        "avg": 24.087,
+        "min": 22.9701,
+        "max": 26.3274
+      },
+      "extract_total_s": {
+        "avg": 14.4193,
+        "min": 12.8678,
+        "max": 17.4336
+      },
+      "chi_square_suspicion": {
+        "avg": 1.0,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "hist_variance_change_pct": {
+        "avg": -9.966,
+        "min": -18.8713,
+        "max": -1.0606
+      },
+      "success_rate": "3/6"
+    },
+    "Hybrid": {
+      "PSNR": {
+        "avg": 42.8256,
+        "min": 38.6117,
+        "max": 47.0395
+      },
+      "SSIM": {
+        "avg": 0.9973,
+        "min": 0.9958,
+        "max": 0.9988
+      },
+      "BER": {
+        "avg": 8.2418,
+        "min": 3.9593,
+        "max": 12.5243
+      },
+      "hide_total_s": {
+        "avg": 19.32,
+        "min": 16.9054,
+        "max": 23.2069
+      },
+      "extract_total_s": {
+        "avg": 7.3885,
+        "min": 6.5687,
+        "max": 8.5364
+      },
+      "chi_square_suspicion": {
+        "avg": 1.0,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "hist_variance_change_pct": {
+        "avg": -7.1311,
+        "min": -10.1113,
+        "max": -4.1509
+      },
+      "success_rate": "6/6"
+    }
+  }
+}

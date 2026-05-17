@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.env
+
+# Keys (do not commit)
+private_key.pem
+public_key.pem
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+.cursor/
+
+# Local temp / browser cache
+.browser_assets/

@@ -1,0 +1,112 @@
+% =============================================================================
+% Chapter 5 — System Testing and Performance Evaluation
+% =============================================================================
+% Requirements (add to main preamble if missing):
+%   \usepackage{graphicx}
+%   \usepackage{float}          % enables [H] for figures/tables
+%   \documentclass{report} or {book}  % \chapter{...} is not available in {article}
+%
+% Place the generated PNGs next to your .tex file:
+%   Figures/test_system.png
+%   Figures/test_integration.png
+%   Figures/comparison.png
+% Copy from: stego_project/Figures/ after running:
+%   python scripts/generate_chapter5_thesis_figures.py
+%
+% Table numbers match program output (chapter5_metrics.json) for one fixed
+% cover + barcode; re-run the script after pipeline changes and paste new rows.
+% =============================================================================
+
+\chapter{System Testing and Performance Evaluation}
+
+\section{Introduction}
+
+This chapter evaluates the performance of the proposed Hybrid Barcode Steganography System based on the design and workflow presented in Chapter~3. The objective is to verify that the implemented system satisfies both functional and non-functional requirements under different operating conditions.
+
+The evaluation includes unit testing of individual modules, integration testing of system components, and full system validation under real deployment conditions. Performance analysis uses objective quality metrics (PSNR, SSIM, and BER) computed by the implementation's \texttt{QualityMetrics} module. Real-world usage scenarios, including mobile interaction and HTTPS access to the deployed site, are considered to assess reliability and usability.
+
+\section{Testing Setup}
+
+This section describes the environment and data used during testing: hardware, software configuration, and input data.
+
+\subsection{Test Environment}
+
+The system was developed and tested on a personal computer running Windows~10/11 with 8--16~GB RAM and SSD storage. Deployment used a cloud server on DigitalOcean (Ubuntu, Python~3.x, virtual environment).
+
+The web application uses Flask behind Gunicorn (\texttt{gthread} worker, extended timeouts for long hide/extract operations) and Nginx as a TLS-terminating reverse proxy to \texttt{127.0.0.1:5000}. Environment variables \texttt{OPENBLAS\_NUM\_THREADS=1}, \texttt{OMP\_NUM\_THREADS=1}, and \texttt{MKL\_NUM\_THREADS=1} were set on the server to avoid BLAS thread contention that otherwise caused hung workers (symptom: open TCP connection with no HTTP response).
+
+\subsection{Test Data}
+
+Tests used PNG (and BMP) for lossless barcode and stego I/O; JPEG was used where the pipeline evaluates compression robustness (e.g.\ DCT with JPEG-robust mode). Image sizes ranged from small covers (e.g.\ $320 \times 320$) to larger photos. Payloads ranged from short plaintext to hybrid-encrypted barcodes. Repeated extraction runs were used to check stability under continuous API use.
+
+\section{Testing Separate Software Units}
+
+This section covers unit tests, integration tests, and system-level checks.
+
+\subsection{Unit Testing}
+
+Each major component was exercised in isolation: AES/RSA hybrid paths via encode/decode with the hybrid option; barcode generation and rendering; LSB, DCT, and Hybrid embedding and extraction. Automated checks in \texttt{scripts/run\_app\_verification.py} (encode/decode, hide/extract text and barcode per method, stress extract, metrics API) provide repeatable regression coverage.
+
+\subsection{Integration Testing}
+
+Integration testing verified the REST workflow: \texttt{/api/encode}, multipart hide endpoints, and extract endpoints. Round-trip tests confirmed recovery of the original message when embedding and extraction methods match. Mismatched methods (e.g.\ LSB embed with DCT extract) produced errors or invalid output, which motivated clearer UI guidance on the live site.
+
+\subsection{System Testing}
+
+The full workflow was exercised through the deployed web UI and HTTPS API. The system reliably generated barcodes, produced stego images, and recovered hidden data when methods were aligned. Quality metrics (when computed) remained acceptable for the chosen covers. Under load, increasing Gunicorn thread count and limiting BLAS parallelism proved necessary so long-running jobs did not starve simple page requests.
+
+Figure~\ref{fig:test_system} illustrates an end-to-end check using the same barcode and cover: encoded barcode, cover, and LSB stego output from the running application.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.92\textwidth]{Figures/test_system.png}
+    \caption{System testing: encoded barcode, cover image, and stego image after LSB hide-barcode (generated from the implementation).}
+    \label{fig:test_system}
+\end{figure}
+
+\section{Testing Integrated System}
+
+This section evaluates the unified application under deployment conditions.
+
+The pipeline from user input to final output was tested in production: client browser $\rightarrow$ Nginx (TLS) $\rightarrow$ Gunicorn $\rightarrow$ Flask. Correct embedding/extraction method pairing remained essential for valid recovery. Service restarts and dependency updates were validated via \texttt{systemd} (\texttt{stego-web.service}).
+
+Figure~\ref{fig:integration_test} summarises the deployment path used for the public site.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.88\textwidth]{Figures/test_integration.png}
+    \caption{Integrated deployment: client, Nginx, Gunicorn, and Flask application (diagram generated for this thesis).}
+    \label{fig:integration_test}
+\end{figure}
+
+\section{A/B Testing}
+
+A comparative analysis was performed for LSB, DCT, and Hybrid embedding on the \emph{same} cover and barcode payload. Metrics were computed with the project's \texttt{QualityMetrics.calculate\_all\_metrics} (BER: percentage of bit differences between cover and stego pixels). Figure~\ref{fig:comparison} shows the resulting stego images and bar charts; Table~\ref{tab:method_compare} lists the numerical values from that run.
+
+\begin{table}[H]
+\centering
+\caption{Comparison of steganographic methods (same cover and barcode; values from \texttt{generate\_chapter5\_thesis\_figures.py}). BER is expressed as a percentage.}
+\label{tab:method_compare}
+\begin{tabular}{|l|c|c|c|}
+\hline
+\textbf{Method} & \textbf{PSNR (dB)} & \textbf{SSIM} & \textbf{BER (\%)} \\
+\hline
+LSB    & 61.52 & 0.9999 & 0.5729 \\
+DCT    & 41.54 & 0.9621 & 14.5679 \\
+Hybrid & 49.06 & 0.9956 & 2.6316 \\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{Figures/comparison.png}
+    \caption{Visual and metric comparison: stego outputs and PSNR/SSIM/BER bars for LSB, DCT, and Hybrid (program-generated).}
+    \label{fig:comparison}
+\end{figure}
+
+LSB achieved the highest PSNR and SSIM in this experiment, with the lowest BER among the three. DCT showed stronger perturbation (higher BER, lower PSNR) as expected from frequency-domain embedding. Hybrid fell between the two, consistent with splitting payload across spatial and frequency paths.
+
+\section{Summary}
+
+This chapter evaluated the Hybrid Barcode Steganography System through unit, integration, and system tests, including deployment and mobile-related observations. The comparative experiment on a fixed cover and barcode quantified the expected trade-offs between LSB, DCT, and Hybrid using metrics produced by the codebase. Overall, the implementation matches the design intent in Chapter~3 and is suitable for practical experiments and demonstration deployments.

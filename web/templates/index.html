@@ -1,0 +1,166 @@
+{% extends "base.html" %}
+{% block content %}
+<nav class="tabs" role="tablist">
+  <button type="button" class="tab active" data-tab="encode">Encode</button>
+  <button type="button" class="tab" data-tab="decode">Decode</button>
+  <button type="button" class="tab" data-tab="stego">Hide Text</button>
+  <button type="button" class="tab" data-tab="hide-barcode">Hide Barcode</button>
+  <button type="button" class="tab" data-tab="extract">Extract</button>
+</nav>
+
+<section id="encode" class="panel active">
+  <div class="panel-title-row">
+    <h2>Encode text to barcode</h2>
+    <button type="button" class="help-toggle" aria-expanded="false" aria-controls="help-encode" title="Help for Encode">?</button>
+  </div>
+  <div id="help-encode" class="help-box" hidden>
+    Enter plain text (or use Add Image), then click <strong>Generate barcode</strong>. You will get a barcode PNG that can be decoded directly, or hidden later inside a cover image.
+  </div>
+  <div class="encode-source-actions">
+    <button type="button" id="btn-encode-enter-text" class="btn-secondary">Enter Text</button>
+    <button type="button" id="btn-encode-add-image" class="btn-secondary">Add Image</button>
+    <input type="file" id="encode-image-file" accept=".png,.jpg,.jpeg,.bmp,.gif" hidden>
+  </div>
+  <textarea id="encode-text" rows="6" placeholder="Enter text or paste image data..."></textarea>
+  <label><input type="checkbox" id="encode-hybrid"> Use hybrid cryptography (AES+RSA)</label>
+  <div class="actions">
+    <button type="button" id="btn-encode">Generate barcode</button>
+  </div>
+  <p id="encode-runtime" class="runtime">Runtime: —</p>
+  <p id="encode-status" class="status"></p>
+  <div id="encode-progress-wrap" class="progress-wrap" hidden>
+    <div class="progress-bar"><div id="encode-progress-fill" class="progress-fill" style="width:0%"></div></div>
+    <pre id="encode-log" class="log-output"></pre>
+  </div>
+</section>
+
+<section id="decode" class="panel">
+  <div class="panel-title-row">
+    <h2>Decode barcode image</h2>
+    <button type="button" class="help-toggle" aria-expanded="false" aria-controls="help-decode" title="Help for Decode">?</button>
+  </div>
+  <div id="help-decode" class="help-box" hidden>
+    Upload the original barcode PNG generated from <strong>Encode</strong>, then click <strong>Decode barcode</strong> to recover the embedded text or image payload.
+  </div>
+  <p class="panel-hint">Use the <strong>barcode PNG</strong> from Encode (or a saved barcode file). Do not upload a <strong>stego/cover</strong> image here.</p>
+  <label class="file-row">Barcode image: <input type="file" id="decode-file" class="file-input" accept=".png,.bmp,.jpg,.jpeg"><span class="file-btn">Choose file</span></label>
+  <div class="actions">
+    <button type="button" id="btn-decode">Decode barcode</button>
+  </div>
+  <p id="decode-runtime" class="runtime">Runtime: —</p>
+  <p id="decode-status" class="status"></p>
+  <div id="decode-progress-wrap" class="progress-wrap" hidden>
+    <div class="progress-bar"><div id="decode-progress-fill" class="progress-fill" style="width:0%"></div></div>
+    <pre id="decode-log" class="log-output"></pre>
+  </div>
+  <pre id="decode-result" class="result"></pre>
+  <div id="decode-image-preview" class="preview"></div>
+</section>
+
+<section id="stego" class="panel">
+  <div class="panel-title-row">
+    <h2>Hide text in cover image</h2>
+    <button type="button" class="help-toggle" aria-expanded="false" aria-controls="help-stego" title="Help for Hide Text">?</button>
+  </div>
+  <div id="help-stego" class="help-box" hidden>
+    Type the secret text, upload a cover image, choose a method (LSB/DCT/Hybrid), then click <strong>Hide text</strong>. The app downloads a stego image containing your text.
+  </div>
+  <textarea id="stego-text" rows="4" placeholder="Text to hide"></textarea>
+  <label class="file-row">Cover image: <input type="file" id="stego-cover" class="file-input" accept=".png,.bmp,.jpg,.jpeg"><span class="file-btn">Choose file</span></label>
+  <label>Method: <select id="stego-method"><option value="LSB">LSB</option><option value="DCT">DCT</option><option value="Hybrid">Hybrid</option></select></label>
+  <div class="actions">
+    <button type="button" id="btn-hide-text">Hide text</button>
+  </div>
+  <p id="stego-runtime" class="runtime">Runtime: —</p>
+  <p id="stego-status" class="status"></p>
+  <div id="stego-progress-wrap" class="progress-wrap" hidden>
+    <div class="progress-bar"><div id="stego-progress-fill" class="progress-fill" style="width:0%"></div></div>
+    <pre id="stego-log" class="log-output"></pre>
+  </div>
+</section>
+
+<section id="hide-barcode" class="panel">
+  <div class="panel-title-row">
+    <h2>Hide barcode in cover image</h2>
+    <button type="button" class="help-toggle" aria-expanded="false" aria-controls="help-hb" title="Help for Hide Barcode">?</button>
+  </div>
+  <div id="help-hb" class="help-box" hidden>
+    Upload a barcode image and a cover image, choose a method, then click <strong>Hide barcode</strong>. Keep note of the selected method because extraction must use the same one.
+  </div>
+  <label class="file-row">Barcode image: <input type="file" id="hb-barcode" class="file-input" accept=".png,.bmp"><span class="file-btn">Choose file</span></label>
+  <label class="file-row">Cover image: <input type="file" id="hb-cover" class="file-input" accept=".png,.bmp,.jpg,.jpeg"><span class="file-btn">Choose file</span></label>
+  <label>Method: <select id="hb-method"><option value="LSB">LSB</option><option value="DCT">DCT</option><option value="Hybrid">Hybrid</option></select></label>
+  <p class="panel-hint">On <strong>Extract</strong>, choose the <strong>same method</strong> you used here. LSB, DCT, and Hybrid embed in different ways—mixing them produces garbage or errors.</p>
+  <label><input type="checkbox" id="hb-jpeg"> JPEG-robust (DCT)</label>
+  <div class="actions">
+    <button type="button" id="btn-hide-barcode">Hide barcode</button>
+  </div>
+  <p id="hb-runtime" class="runtime">Runtime: —</p>
+  <p id="hb-status" class="status"></p>
+  <div id="hb-progress-wrap" class="progress-wrap" hidden>
+    <div class="progress-bar"><div id="hb-progress-fill" class="progress-fill" style="width:0%"></div></div>
+    <pre id="hb-log" class="log-output"></pre>
+  </div>
+  <div id="hb-save-hint" class="hb-save-hint" hidden>
+    <p class="hb-save-hint-text"><strong>Phone / tablet:</strong> If nothing saved automatically, use the image below — <strong>tap and hold</strong>, then <strong>Save to Photos</strong> / <strong>Download image</strong>.</p>
+    <img id="hb-stego-save-preview" class="hb-stego-save-preview" alt="Stego result (tap and hold to save)">
+  </div>
+  <div id="hb-metrics-panel" class="metrics-comparison-panel" hidden>
+    <div class="metrics-comparison-inner">
+      <div class="metrics-quality-col">
+        <h3 class="metrics-panel-title">Image Quality Metrics</h3>
+        <p id="hb-psnr" class="metrics-line">PSNR: — dB</p>
+        <p id="hb-ssim" class="metrics-line">SSIM: —</p>
+        <p id="hb-ber" class="metrics-line">BER: —%</p>
+      </div>
+      <div class="metrics-comparison-col">
+        <h3 class="metrics-panel-title metrics-panel-title-with-icon">Image Comparison</h3>
+        <div class="metrics-subsection">
+          <h4 class="metrics-subtitle">Cover</h4>
+          <img id="hb-cover-thumb" class="metrics-thumb" src="" alt="Cover" hidden>
+          <p id="hb-cover-details" class="metrics-details">Size: —<br>File: —<br>Pixels: —</p>
+        </div>
+        <div class="metrics-subsection">
+          <h4 class="metrics-subtitle">Stego</h4>
+          <img id="hb-stego-thumb" class="metrics-thumb" src="" alt="Stego" hidden>
+          <p id="hb-stego-details" class="metrics-details">Size: —<br>File: —<br>Pixels: —</p>
+        </div>
+        <div class="metrics-subsection">
+          <h4 class="metrics-subtitle metrics-advanced">Advanced Analysis</h4>
+          <p id="hb-advanced" class="metrics-details">Entropy C: — S: —<br>Embedded: (see file) LSB: —<br>Hist Var: — → —</p>
+        </div>
+        <div class="metrics-subsection">
+          <h4 class="metrics-subtitle metrics-differences">Differences</h4>
+          <p id="hb-differences" class="metrics-details">Size: — Dim: — Pixels: —</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="extract" class="panel">
+  <div class="panel-title-row">
+    <h2>Extract from stego image</h2>
+    <button type="button" class="help-toggle" aria-expanded="false" aria-controls="help-extract" title="Help for Extract">?</button>
+  </div>
+  <div id="help-extract" class="help-box" hidden>
+    Upload a stego image, choose <strong>Text</strong> or <strong>Barcode (decode)</strong>, and select the same method used during hiding. Click <strong>Extract</strong> to recover the data.
+  </div>
+  <label class="file-row">Stego image: <input type="file" id="extract-file" class="file-input" accept=".png,.bmp,.tiff,.jpg,.jpeg"><span class="file-btn">Choose file</span></label>
+  <label>Extract: <select id="extract-type"><option value="text">Text only</option><option value="barcode">Barcode (decode)</option></select></label>
+  <label>Method: <select id="extract-method"><option value="LSB">LSB</option><option value="DCT">DCT</option><option value="Hybrid">Hybrid</option></select></label>
+  <p class="panel-hint">Must match <strong>Hide Barcode → Method</strong> (or Hide Text). If you used DCT with <strong>JPEG-robust</strong>, keep the stego as PNG from the site when possible—re-saving as JPEG in Photos can break normal DCT unless you hid with JPEG-robust.</p>
+  <div class="actions">
+    <button type="button" id="btn-extract">Extract</button>
+  </div>
+  <p id="extract-runtime" class="runtime">Runtime: —</p>
+  <p id="extract-status" class="status"></p>
+  <div id="extract-progress-wrap" class="progress-wrap" hidden>
+    <div class="progress-bar"><div id="extract-progress-fill" class="progress-fill" style="width:0%"></div></div>
+    <pre id="extract-log" class="log-output"></pre>
+  </div>
+  <pre id="extract-result" class="result"></pre>
+  <div id="extract-image-preview" class="preview"></div>
+</section>
+
+{% endblock %}
